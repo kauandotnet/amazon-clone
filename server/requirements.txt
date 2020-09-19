@@ -13,6 +13,7 @@ mccabe==0.6.1
 pydantic==1.6.1
 pylint==2.6.0
 requests==2.24.0
+rope==0.17.0
 selenium==3.141.0
 six==1.15.0
 soupsieve==2.0.1
