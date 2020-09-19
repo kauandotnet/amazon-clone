@@ -20,4 +20,5 @@
 
 
 # SERVER
-/server/env
+/server/src/env
+/server/venv
