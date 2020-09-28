@@ -22,3 +22,5 @@
 # SERVER
 /server/src/env
 /server/venv
+/server/.env.local
+/server/.env.dev
