@@ -1,0 +1,43 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type GoogleAccount {
+  accessToken: String
+}
+
+type FacebookAccount {
+  accessToken: String!
+}
+
+type UsersModel {
+  _id: ID!
+  username: String
+  password: String
+  email: String
+  imgUrl: String
+  googleAccount: GoogleAccount
+  facebookAcount: FacebookAccount
+}
+
+type LoggedInUserDto {
+  _id: String
+  email: String
+  accessToken: String!
+}
+
+type Query {
+  users: [UsersModel!]!
+  userById: UsersModel!
+}
+
+type Mutation {
+  register(input: CreateUserInputDto!): UsersModel!
+  login(password: String!, email: String!): LoggedInUserDto!
+}
+
+input CreateUserInputDto {
+  username: String!
+  email: String!
+  password: String!
+}

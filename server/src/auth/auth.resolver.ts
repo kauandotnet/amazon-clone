@@ -25,8 +25,6 @@ export class AuthResolver {
     try {
       const user = await this.authService.validateUser(email, password);
 
-      console.log('user');
-
       // Return empty object if user is unable to be validated
       if (!user) {
         throw new UnauthorizedException();
