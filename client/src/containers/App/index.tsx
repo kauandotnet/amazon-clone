@@ -4,12 +4,22 @@ import { GlobalStyle } from 'styles/global';
 import { Routes } from 'enums/Routes';
 import PrivateRoute from 'components/PrivateRoute';
 // import FullPageLoader from 'components/Loaders/FullPageLoader';
+import Header from 'containers/Header';
 import Home from 'pages/Home';
 /* DON'T REMOVE THIS LINE - CODE-GENERATOR: PAGES IMPORT */
 
-const App: React.FC = () => {
+const Layout: React.FC = ({ children }) => {
   return (
     <div>
+      <Header />
+      {children}
+    </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Layout>
       <Switch>
         <Route exact path={Routes.HOME}>
           <Home />
@@ -17,7 +27,7 @@ const App: React.FC = () => {
         {/* DON'T REMOVE THIS LINE - CODE-GENERATOR: ROUTE */}
       </Switch>
       <GlobalStyle />
-    </div>
+    </Layout>
   );
 };
 

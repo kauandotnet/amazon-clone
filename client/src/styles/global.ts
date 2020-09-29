@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
@@ -6,8 +6,7 @@ const GlobalStyle = createGlobalStyle`
 body {
     background-color: #fafafa;
     font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    
+    margin: 0; 
   }
 `;
 

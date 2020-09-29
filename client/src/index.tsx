@@ -8,6 +8,7 @@ import App from 'containers/App';
 import theme from 'styles/theme';
 import client from 'apollo/index';
 import * as serviceWorker from './serviceWorker';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <React.StrictMode>
