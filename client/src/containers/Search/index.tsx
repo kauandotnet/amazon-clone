@@ -4,14 +4,20 @@
 
 import React from 'react';
 import { SC } from './styled';
-import { SearchProps } from './interfaces';
 import { useHistory } from 'react-router-dom';
+import { Routes } from 'enums/Routes';
+import { UrlParams } from 'enums/UrlParams';
 
-// Add value to url param and redirect to result paginated page
-
-const Search: React.FC<SearchProps> = ({ ...props }) => {
+const Search: React.FC = ({ ...props }) => {
   const history = useHistory();
-  return <SC.Search {...props} enterButton />;
+
+  const onSearch = (value: string) =>
+    history.push({
+      pathname: Routes.SEARCH,
+      search: `?${UrlParams.QUERY}=${value}`,
+    });
+
+  return <SC.Search onSearch={onSearch} enterButton />;
 };
 
 export default Search;

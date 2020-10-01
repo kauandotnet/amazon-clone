@@ -4,22 +4,18 @@
  */
 
 import { InMemoryCache, makeVar } from '@apollo/client';
-import { LocalStorage } from 'enums/LocalStorage';
+import { userVar } from './user';
 
-const cartItemsVar = makeVar([]);
-
-const cache: InMemoryCache = new InMemoryCache({
+export const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        cartItems: {
+        user: {
           read() {
-            return cartItemsVar();
+            return userVar();
           },
         },
       },
     },
   },
 });
-
-export { cache };

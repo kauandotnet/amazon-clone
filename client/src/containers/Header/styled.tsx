@@ -5,8 +5,8 @@
 import styled from 'styled-components';
 
 const Logo = styled.img`
-  height: 40px;
-  width: 140px;
+  height: 30px;
+  width: 100px;
 `;
 
 const HeaderCenter = styled.div`

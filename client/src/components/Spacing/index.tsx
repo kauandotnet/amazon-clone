@@ -11,7 +11,7 @@ interface ISpacing {
   justify?: string;
 }
 const Spacing = styled.div<ISpacing>`
-  height: ${p => p.height && `${p.height}`};
+  height: ${p => (p.height ? `${p.height}` : '1rem')};
   width: ${p => p.width && `${p.width}`};
   margin: ${p => p.margin && `${p.margin}`};
   padding: ${p => p.padding && `${p.padding}`};

@@ -22,6 +22,11 @@ const Search = styled(AntdSearch)<AntdSearchProps>`
   }
 `;
 
+const SearchForm = styled.form`
+  width: 100%;
+`;
+
 export const SC = {
   Search,
+  SearchForm,
 };

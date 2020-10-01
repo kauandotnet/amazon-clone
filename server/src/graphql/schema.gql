@@ -22,6 +22,7 @@ type UsersModel {
 
 type LoggedInUserDto {
   _id: String
+  username: String
   email: String
   accessToken: String!
 }

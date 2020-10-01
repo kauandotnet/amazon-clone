@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { SC } from './styled';
 import Navbar from 'components/Navbar';
 import Search from 'containers/Search';
+import AuthDropdown from 'containers/AuthDropdown';
 import amazonWhiteImg from 'resources/img/a-white.png';
 
 const Header: React.FC = () => {
@@ -17,7 +18,9 @@ const Header: React.FC = () => {
       <SC.HeaderCenter>
         <Search />
       </SC.HeaderCenter>
-      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, fuga.</div>
+      <div>
+        <AuthDropdown />
+      </div>
     </Navbar>
   );
 };

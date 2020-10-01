@@ -37,6 +37,7 @@ export class AuthResolver {
 
       const loggedInUser = <LoggedInUserDto>{};
       loggedInUser._id = user._id;
+      loggedInUser.username = user.username;
       loggedInUser.email = user.email;
       loggedInUser.accessToken = accessToken;
 

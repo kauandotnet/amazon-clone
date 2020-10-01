@@ -6,6 +6,7 @@ import PrivateRoute from 'components/PrivateRoute';
 // import FullPageLoader from 'components/Loaders/FullPageLoader';
 import Header from 'containers/Header';
 import Home from 'pages/Home';
+import SignIn from 'pages/SignIn';
 /* DON'T REMOVE THIS LINE - CODE-GENERATOR: PAGES IMPORT */
 
 const Layout: React.FC = ({ children }) => {
@@ -23,6 +24,9 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path={Routes.HOME}>
           <Home />
+        </Route>
+        <Route exact path={Routes.SIGNIN}>
+          <SignIn />
         </Route>
         {/* DON'T REMOVE THIS LINE - CODE-GENERATOR: ROUTE */}
       </Switch>

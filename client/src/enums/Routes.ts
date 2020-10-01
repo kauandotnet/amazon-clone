@@ -1,9 +1,10 @@
 export enum Routes {
   HOME = '/',
-  LOGIN = '/login',
+  SEARCH = '/s',
+  SIGNIN = '/signin',
+  SIGNUP = '/signup',
   NEW_PASSWORD = '/new-password',
   RESET_PASSWORD = '/reset-password',
-  REGISTER = '/register',
   VERIFY = '/verify',
   BAG = '/bag',
   CHECKOUT = '/checkout',
