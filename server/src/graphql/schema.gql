@@ -20,6 +20,10 @@ type UsersModel {
   facebookAcount: FacebookAccount
 }
 
+type CreateUserResponseDto {
+  ok: Boolean!
+}
+
 type LoggedInUserDto {
   _id: String
   username: String
@@ -33,7 +37,7 @@ type Query {
 }
 
 type Mutation {
-  register(input: CreateUserInputDto!): UsersModel!
+  register(input: CreateUserInputDto!): CreateUserResponseDto!
   login(password: String!, email: String!): LoggedInUserDto!
 }
 

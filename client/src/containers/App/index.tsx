@@ -2,11 +2,12 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from 'styles/global';
 import { Routes } from 'enums/Routes';
-import PrivateRoute from 'components/PrivateRoute';
+// import PrivateRoute from 'components/PrivateRoute';
 // import FullPageLoader from 'components/Loaders/FullPageLoader';
 import Header from 'containers/Header';
 import Home from 'pages/Home';
 import SignIn from 'pages/SignIn';
+import SignUp from 'pages/SignUp';
 /* DON'T REMOVE THIS LINE - CODE-GENERATOR: PAGES IMPORT */
 
 const Layout: React.FC = ({ children }) => {
@@ -27,6 +28,9 @@ const App: React.FC = () => {
         </Route>
         <Route exact path={Routes.SIGNIN}>
           <SignIn />
+        </Route>
+        <Route exact path={Routes.SIGNUP}>
+          <SignUp />
         </Route>
         {/* DON'T REMOVE THIS LINE - CODE-GENERATOR: ROUTE */}
       </Switch>

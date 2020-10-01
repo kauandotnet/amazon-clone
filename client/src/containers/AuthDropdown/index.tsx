@@ -41,7 +41,7 @@ const AuthDropdown: React.FC = () => {
   const Content = () => {
     return (
       <div>
-        Hello, {accessToken && username ? username : accessToken && email ? email : 'Sign up'}
+        Hello, {accessToken && username ? username : accessToken && email ? email : 'Sign in'}
         <br />
         <b>Account & Lists</b>
       </div>

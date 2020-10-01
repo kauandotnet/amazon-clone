@@ -1,8 +1,3 @@
-import { OmitProps } from 'antd/lib/transfer/ListBody';
-/**
- * Button
- */
-
 import React from 'react';
 import { ButtonProps } from './interface';
 import { SC } from './styled';

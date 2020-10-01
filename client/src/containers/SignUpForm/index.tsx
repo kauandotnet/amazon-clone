@@ -3,95 +3,99 @@
  */
 
 import React from 'react';
-import { Card, Input, Space, Button as AntdButton, message } from 'antd';
-import { useMutation, useReactiveVar } from '@apollo/client';
-import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
+import { Card, message } from 'antd';
+import { useMutation } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { FieldNames } from './enums';
-import { USER_LOGIN } from './gql';
-import styled from 'styled-components';
-import { Container } from './styled';
+import { SIGN_UP } from './gql';
 import { validationSchema } from './validations';
 import { yupResolver } from '@hookform/resolvers';
 import { capitalCase } from 'change-case';
-import { transparentize } from 'polished';
-import { userVar } from 'apollo/cache/user';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import { SignUpData, SignUpVar, SignUpFormValues } from './interfaces';
+import Spacing from 'components/Spacing';
+import { Routes } from 'enums/Routes';
 
-// TODO: move to its component
-const Button = styled(AntdButton)`
-  &&& {
-    background-color: ${p => p.theme.colors.amazonorange};
+const SignUpForm: React.FC = () => {
+  const history = useHistory();
 
-    &:hover,
-    :focus,
-    :active {
-      color: black;
-      background-color: ${p => transparentize(0.3, p.theme.colors.amazonorange)};
-      border-color: ${p => transparentize(0.3, p.theme.colors.amazonorange)};
-    }
-  }
-`;
-
-const SignInForm: React.FC = () => {
-  const user = useReactiveVar(userVar);
-  const [login, { loading }] = useMutation(USER_LOGIN, {
+  const [register, { loading }] = useMutation<SignUpData, SignUpVar>(SIGN_UP, {
     onError(error) {
       message.error(error.message);
     },
-    onCompleted({ login: loginData }) {
-      message.success('Succesfully login!');
-      console.log(loginData);
-      // do something
+    onCompleted({ register: registerData }) {
+      if (registerData.ok) {
+        message.success('Succesfully create account!');
+        history.push(Routes.SIGNIN);
+      }
+
+      if (!registerData.ok) {
+        message.error('Something when wrong!');
+      }
     },
   });
-  const { handleSubmit, control, errors } = useForm({
+  const { handleSubmit, control, errors } = useForm<SignUpFormValues>({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = handleSubmit(values => {
-    console.log('VALUES', values);
+    console.log(values);
+    register({
+      variables: {
+        username: values.userName,
+        email: values.email,
+        password: values.password,
+      },
+    });
   });
-
-  console.log(errors);
 
   return (
     <Card>
       <form onSubmit={onSubmit}>
-        <h1>Sign-In</h1>
-        <Space style={{ width: '100%' }} size="large" direction="vertical">
-          <Controller
-            control={control}
-            name={FieldNames.USERNAME}
-            placeholder={capitalCase(FieldNames.USERNAME)}
-            as={Input}
-          />
-          <ErrorMessage errors={errors} name={FieldNames.USERNAME} />
-          <Controller
-            control={control}
-            name={FieldNames.EMAIL}
-            placeholder={capitalCase(FieldNames.EMAIL)}
-            as={Input}
-          />
-          <Controller
-            control={control}
-            name={FieldNames.PASSWORD}
-            placeholder={capitalCase(FieldNames.PASSWORD)}
-            as={Input}
-          />
-          <Controller
-            control={control}
-            name={FieldNames.CONFIRM_PASSWORD}
-            placeholder={capitalCase(FieldNames.CONFIRM_PASSWORD)}
-            as={Input}
-          />
-          <Button htmlType="submit" block>
-            Sign in
-          </Button>
-        </Space>
+        <h1>Create Account</h1>
+        <Controller
+          control={control}
+          name={FieldNames.USERNAME}
+          placeholder={capitalCase(FieldNames.USERNAME)}
+          as={Input}
+        />
+        <ErrorMessage errors={errors} name={FieldNames.USERNAME} />
+        <Spacing />
+        <Controller
+          control={control}
+          name={FieldNames.EMAIL}
+          placeholder={capitalCase(FieldNames.EMAIL)}
+          as={Input}
+        />
+        <ErrorMessage errors={errors} name={FieldNames.EMAIL} />
+        <Spacing />
+        <Controller
+          control={control}
+          name={FieldNames.PASSWORD}
+          type="password"
+          placeholder={capitalCase(FieldNames.PASSWORD)}
+          as={Input}
+        />
+        <ErrorMessage errors={errors} name={FieldNames.PASSWORD} />
+        <Spacing />
+        <Controller
+          control={control}
+          name={FieldNames.CONFIRM_PASSWORD}
+          type="password"
+          placeholder={capitalCase(FieldNames.CONFIRM_PASSWORD)}
+          as={Input}
+        />
+        <ErrorMessage errors={errors} name={FieldNames.CONFIRM_PASSWORD} />
+        <Spacing />
+        <Button loading={loading} htmlType="submit" block>
+          Sign up
+        </Button>
       </form>
     </Card>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

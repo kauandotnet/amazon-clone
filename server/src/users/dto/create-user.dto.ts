@@ -1,6 +1,6 @@
 // Nestjs convention DTO (data transfer object) - https://docs.nestjs.com/controllers#request-payloads
 
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, ObjectType } from '@nestjs/graphql';
 
 @InputType()
 export class CreateUserInputDto {
@@ -12,4 +12,10 @@ export class CreateUserInputDto {
 
   @Field(() => String)
   password: string;
+}
+
+@ObjectType()
+export class CreateUserResponseDto {
+  @Field(() => Boolean)
+  ok: boolean;
 }

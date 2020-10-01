@@ -4,27 +4,25 @@
 
 import React from 'react';
 import { Card, message } from 'antd';
-import { useMutation, useReactiveVar } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { FieldNames } from './enums';
 import { USER_LOGIN } from './gql';
-import styled from 'styled-components';
 import { validationSchema } from './validations';
 import { yupResolver } from '@hookform/resolvers';
 import { capitalCase } from 'change-case';
-import { transparentize } from 'polished';
 import { userVar } from 'apollo/cache/user';
 import Spacing from 'components/Spacing';
 import { LoginData, LoginVars } from './interfaces';
 import { LocalStorage } from 'enums/LocalStorage';
 import Button from 'components/Button';
 import Input from 'components/Input';
+import { Routes } from 'enums/Routes';
 
 export const SignInForm: React.FC = () => {
   const history = useHistory();
-  const user = useReactiveVar(userVar);
   const [login, { loading }] = useMutation<LoginData, LoginVars>(USER_LOGIN, {
     onError(error) {
       message.error(error.message);
@@ -37,7 +35,7 @@ export const SignInForm: React.FC = () => {
         email: loginData.email,
         isLogin: !!loginData.accessToken,
       });
-      history.goBack();
+      history.push(Routes.HOME);
     },
   });
   const { handleSubmit, control, errors } = useForm<{ email: string; password: string }>({
@@ -69,6 +67,7 @@ export const SignInForm: React.FC = () => {
         <Controller
           control={control}
           name={FieldNames.PASSWORD}
+          type="password"
           placeholder={capitalCase(FieldNames.PASSWORD)}
           as={Input}
         />

@@ -3,8 +3,6 @@
  */
 
 import React from 'react';
-import { GET_HEADER, CREATE_HEADER } from './gql';
-import styled from 'styled-components';
 import { SC } from './styled';
 import Navbar from 'components/Navbar';
 import Search from 'containers/Search';

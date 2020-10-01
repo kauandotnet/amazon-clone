@@ -1,7 +1,10 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { UsersModel } from './users.model';
-import { CreateUserInputDto } from './dto/create-user.input.dto';
+import {
+  CreateUserInputDto,
+  CreateUserResponseDto,
+} from './dto/create-user.dto';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/graphql/graphql.guard';
 import { CurrentUser } from './users.decorator';
@@ -23,8 +26,9 @@ export class UsersResolver {
     return this.userService.findOneById(user._id);
   }
 
-  @Mutation(() => UsersModel)
+  @Mutation(() => CreateUserResponseDto)
   async register(@Args('input') input: CreateUserInputDto) {
-    return this.userService.create(input);
+    await this.userService.create(input);
+    return { ok: true };
   }
 }

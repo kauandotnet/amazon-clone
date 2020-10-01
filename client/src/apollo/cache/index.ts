@@ -3,7 +3,7 @@
  * https://www.apollographql.com/docs/react/data/local-state/#migrating-from-apollo-link-state
  */
 
-import { InMemoryCache, makeVar } from '@apollo/client';
+import { InMemoryCache } from '@apollo/client';
 import { userVar } from './user';
 
 export const cache: InMemoryCache = new InMemoryCache({
