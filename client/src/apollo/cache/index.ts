@@ -5,6 +5,7 @@
 
 import { InMemoryCache } from '@apollo/client';
 import { userVar } from './user';
+import { cartItmesVar } from './cartItems';
 
 export const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
@@ -13,6 +14,11 @@ export const cache: InMemoryCache = new InMemoryCache({
         user: {
           read() {
             return userVar();
+          },
+        },
+        cartItems: {
+          read() {
+            return cartItmesVar();
           },
         },
       },

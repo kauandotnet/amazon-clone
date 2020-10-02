@@ -6,7 +6,7 @@ export enum Routes {
   NEW_PASSWORD = '/new-password',
   RESET_PASSWORD = '/reset-password',
   VERIFY = '/verify',
-  BAG = '/bag',
+  CART = '/cart',
   CHECKOUT = '/checkout',
   ERROR403 = '/403',
   ERROR404 = '/404',

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@apollo/client": "^3.2.1",
     "@hookform/error-message": "0.0.4",
     "@hookform/resolvers": "^0.1.1",

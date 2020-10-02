@@ -4,10 +4,14 @@
 
 import React from 'react';
 import { HomeProps } from './interface';
-import { HomeContainer } from './styled';
+import { SC } from './styled';
 
 export const Home: React.FC<HomeProps> = () => {
-  return <HomeContainer>A new Component</HomeContainer>;
+  return (
+    <SC.HomeContainer>
+      <SC.HomeHeroBg />
+    </SC.HomeContainer>
+  );
 };
 
 export default Home;
